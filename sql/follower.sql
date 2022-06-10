@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2022 at 01:17 PM
+-- Generation Time: Jun 11, 2022 at 12:46 AM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -34,6 +34,19 @@ CREATE TABLE `follower` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Dumping data for table `follower`
+--
+
+INSERT INTO `follower` (`fUserID`, `fFollowingID`, `fFollowedDate`) VALUES
+(1, 2, '1654893973426'),
+(1, 3, '1654894004468'),
+(1, 4, '1654894394694'),
+(1, 5, '1654894443917'),
+(1, 6, '1654889562011'),
+(1, 7, '1654889562012'),
+(1, 8, '1654894620117');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -41,7 +54,7 @@ CREATE TABLE `follower` (
 -- Indexes for table `follower`
 --
 ALTER TABLE `follower`
-  ADD UNIQUE KEY `followings` (`fUserID`,`fFollowingID`);
+  ADD UNIQUE KEY `followings` (`fUserID`,`fFollowingID`) USING BTREE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

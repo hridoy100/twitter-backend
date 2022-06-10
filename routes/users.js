@@ -99,7 +99,10 @@ router.get('/id/:id', async function (req, res, next) {
         return res.status(401).send(e);
     }
     res.setHeader('Content-Type', 'application/json');
-    res.send(await userDB.getUserByUserID(req.params.id));
+    var user = await userDB.getUserByUserID(req.params.id);
+    delete(user.uPassword);
+    delete(user.uIsDeleted);
+    res.send(user);
 });
 
 router.get('/username/:userName', async function (req, res, next) {
@@ -115,7 +118,10 @@ router.get('/username/:userName', async function (req, res, next) {
         return res.status(401).send(e);
     }
     res.setHeader('Content-Type', 'application/json');
-    res.send(await userDB.getUserByUserName(req.params.userName));
+    var user = await userDB.getUserByUserName(req.params.userName);
+    delete(user.uPassword);
+    delete(user.uIsDeleted);
+    res.send(user);
 });
 
 

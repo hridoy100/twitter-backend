@@ -1,7 +1,7 @@
 {
   "name": "twitter-backend",
   "version": "1.0.0",
-  "description": "backend application for twitter\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[D\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[C\u001b[D\u001b[D\u001b[D\u001b[D\u001b[",
+  "description": "backend application for twitter",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"

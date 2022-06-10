@@ -1,8 +1,8 @@
 const con = require("./db_connection");
 
-const insertTweet = (tweet, userName) => {
-    let sql = `INSERT INTO tweet (tUserName, tText, tCreatedAt) VALUES ?;`;
-    let values = [[userName, tweet, new Date().getTime()]];
+const insertTweet = (tweet, userID) => {
+    let sql = `INSERT INTO tweet (tUserID, tText, tCreatedAt) VALUES ?;`;
+    let values = [[userID, tweet, new Date().getTime()]];
     return new Promise((resolve, reject) => {
         con.query(sql, [values], function (err, result) {
             if(err) return reject(err);
@@ -11,9 +11,9 @@ const insertTweet = (tweet, userName) => {
     });
 }
 
-const getAllMyTweets = (userName) => {
-    let sql = `SELECT * FROM tweet WHERE tUserName=?`;
-    let value = [[userName]];
+const getAllMyTweets = (userID) => {
+    let sql = `SELECT * FROM tweet WHERE tUserID=?`;
+    let value = [[userID]];
     return new Promise((resolve, reject) => {
         con.query(sql, [value], (err, rows) => {
             if (err) return reject(err);

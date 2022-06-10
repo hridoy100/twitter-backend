@@ -15,4 +15,10 @@ router.post('/create', async function(req, res, next) {
     res.send(req.body);
 });
 
+router.get('/user/:userName', async function(req, res, next) {
+    const userName = req.params.userName;
+    const result = await tweetDB.getAllMyTweets(userName);
+    res.send(JSON.stringify(result));
+});
+
 module.exports = router;

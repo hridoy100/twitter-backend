@@ -5,7 +5,6 @@ var router = express.Router();
 const userDB = require('../db/user_db');
 
 const isOK = require('../util/util');
-const {getUser} = require("../db/user_db");
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
@@ -28,8 +27,12 @@ router.post('/create', async function(req, res, next) {
   res.send(req.body);
 });
 
-router.get('/:id', async function(req, res, next) {
-  res.send(await getUser(req.params.id));
+router.get('/id/:id', async function(req, res, next) {
+  res.send(await userDB.getUserByUserID(req.params.id));
+});
+
+router.get('/username/:userName', async function(req, res, next) {
+  res.send(await userDB.getUserByUserName(req.params.userName));
 });
 
 module.exports = router;

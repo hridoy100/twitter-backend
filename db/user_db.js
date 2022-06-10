@@ -9,10 +9,22 @@ const getAllUsers = () =>  {
         });
     });
 }
-const getUser = (userName) =>  {
-    let sql = 'SELECT * from user where uUserName='+userName;
+const getUserByUserName = (userName) =>  {
+    let sql = 'SELECT * from user where uUserName=?';
+    let values = [[userName]];
     return new Promise((resolve, reject) => {
-        con.query(sql, (err, rows, fields) => {
+        con.query(sql, [values], (err, rows, fields) => {
+            if (err) return reject(err);
+            // console.log(rows);
+            return resolve(rows);
+        });
+    });
+}
+const getUserByUserID = (userID) =>  {
+    let sql = 'SELECT * from user where uID=?';
+    let values = [[userID]];
+    return new Promise((resolve, reject) => {
+        con.query(sql, [values], (err, rows, fields) => {
             if (err) return reject(err);
             // console.log(rows);
             return resolve(rows);
@@ -31,4 +43,4 @@ const insertUser = (user) => {
     });
 }
 
-module.exports = {getAllUsers, insertUser, getUser};
+module.exports = {getAllUsers, insertUser, getUserByUserName, getUserByUserID};

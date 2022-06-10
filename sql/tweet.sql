@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 10, 2022 at 12:58 PM
+-- Generation Time: Jun 10, 2022 at 01:11 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.1.6
 
@@ -24,16 +24,14 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `tweet`
 --
 
-CREATE TABLE `user` (
-  `uID` int(11) NOT NULL,
-  `uName` varchar(100) NOT NULL,
-  `uPassword` int(11) DEFAULT NULL,
-  `uBirthday` decimal(16,0) DEFAULT NULL,
-  `uCreatedAt` decimal(16,0) DEFAULT NULL,
-  `uIsDeleted` tinyint(4) NOT NULL DEFAULT 0
+CREATE TABLE `tweet` (
+  `tID` int(11) NOT NULL,
+  `tUserID` int(11) NOT NULL,
+  `tText` varchar(500) DEFAULT NULL,
+  `tCreatedAt` decimal(16,0) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
@@ -41,20 +39,21 @@ CREATE TABLE `user` (
 --
 
 --
--- Indexes for table `user`
+-- Indexes for table `tweet`
 --
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`uID`);
+ALTER TABLE `tweet`
+  ADD PRIMARY KEY (`tID`),
+  ADD KEY `tUserID` (`tUserID`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `tweet`
 --
-ALTER TABLE `user`
-  MODIFY `uID` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `tweet`
+  MODIFY `tID` int(11) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

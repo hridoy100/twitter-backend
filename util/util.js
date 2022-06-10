@@ -1,3 +1,4 @@
+const jwt = require("jsonwebtoken");
 const isOK = (data) => {
     return (data!==undefined && data!=null && data.length!==0);
 }
@@ -22,4 +23,11 @@ const isValidPassword = (password) => {
     return password.length>5 && rePassw.test(password);
 }
 
-module.exports = {isOK, isUserName, isString, isNumeric, isValidPassword};
+const validateToken = (req) => {
+    let tokenHeaderKey = process.env.TOKEN_HEADER_KEY;
+    let jwtSecretKey = process.env.ACCESS_TOKEN_SECRET;
+    const token = req.header(tokenHeaderKey);
+    return jwt.verify(token, jwtSecretKey);
+}
+
+module.exports = {isOK, isUserName, isString, isNumeric, isValidPassword, validateToken};

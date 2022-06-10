@@ -1,4 +1,29 @@
 # twitter-backend
+
+## Setting up the Project:
+1. First clone the repository. 
+2. Then run ```npm install``` this will install the dependencies. 
+3. Create a file named **.env** and add the following parameters described in [Environment File ](#env) section.
+4. From **sql** folder, import the tables into your mysql database.
+5. Now you're all set up to run this application.
+
+<a name="env"></a>
+## Environment File:
+.env file should have the following parameters:
+```
+TOKEN_HEADER_KEY = x-access-token
+ACCESS_TOKEN_SECRET=
+REFRESH_TOKEN_SECRET=
+```
+You can generate the secret keys by using the following commands and then copy and paste the data here.
+
+```javascript
+node
+require('crypto').randomBytes(64).toString('hex');
+require('crypto').randomBytes(64).toString('hex');
+```
+Running the command two times will generate a secret key. You can use that in your env file.
+
 ## Running the application:
 1. using node 
 ```node bin/www```

@@ -21,4 +21,10 @@ router.get('/user/:userName', async function(req, res, next) {
     res.send(JSON.stringify(result));
 });
 
+router.get('/feed/:id', async function(req, res, next) {
+    const userID = req.params.id;
+    const result = await tweetDB.getNewsFeed(userID);
+    res.send(JSON.stringify(result));
+});
+
 module.exports = router;

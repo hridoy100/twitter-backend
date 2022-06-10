@@ -23,4 +23,16 @@ const getAllMyTweets = (userName) => {
     });
 }
 
-module.exports = {insertTweet, getAllMyTweets};
+const getNewsFeed = (userID) => {
+    let sql = 'SELECT * FROM tweet WHERE tUserID IN (SELECT fFollowingID from follower where fUserID=?) ORDER BY tCreatedAt DESC;';
+    let value = [[userID]];
+    return new Promise((resolve, reject) => {
+        con.query(sql, [value], (err, rows) => {
+            if (err) return reject(err);
+            // console.log(rows);
+            return resolve(rows);
+        });
+    });
+}
+
+module.exports = {insertTweet, getAllMyTweets, getNewsFeed};

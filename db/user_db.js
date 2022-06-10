@@ -16,7 +16,7 @@ const getUserByUserName = (userName) =>  {
         con.query(sql, [values], (err, rows, fields) => {
             if (err) return reject(err);
             // console.log(rows);
-            return resolve(rows);
+            return resolve(rows[0]);
         });
     });
 }
@@ -27,7 +27,7 @@ const getUserByUserID = (userID) =>  {
         con.query(sql, [values], (err, rows, fields) => {
             if (err) return reject(err);
             // console.log(rows);
-            return resolve(rows);
+            return resolve(rows[0]);
         });
     });
 }

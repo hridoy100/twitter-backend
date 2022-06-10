@@ -25,16 +25,18 @@ router.post('/create', async function(req, res, next) {
     }
 });
 
-router.get('/my/:id', async function(req, res, next) {
+router.post('/my/:id', async function(req, res, next) {
     const id = req.params.id;
-    const result = await tweetDB.getAllMyTweets(id);
+    const {isNext, time} = req.body;
+    const result = await tweetDB.getMyTweets(id, isNext, time);
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(result));
 });
 
-router.get('/feed/:id', async function(req, res, next) {
+router.post('/feed/:id', async function(req, res, next) {
     const userID = req.params.id;
-    const result = await tweetDB.getNewsFeed(userID);
+    const {isNext, time} = req.body;
+    const result = await tweetDB.getNewsFeed(userID, isNext, time);
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify(result));
 });

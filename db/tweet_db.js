@@ -11,8 +11,15 @@ const insertTweet = (tweet, userID) => {
     });
 }
 
-const getAllMyTweets = (userID) => {
+const getMyTweets = (userID, isNext, time) => {
     let sql = `SELECT * FROM tweet WHERE tUserID=?`;
+    if(isNext===0)
+        sql = sql + ' limit 100';
+    else if(isNext===-1)
+        sql = sql + ' And tCreatedAt<=' + time + ' limit 100';
+    else if(isNext===1)
+        sql = sql + ' And tCreatedAt>' + time + ' limit 100';
+    console.log(sql);
     let value = [[userID]];
     return new Promise((resolve, reject) => {
         con.query(sql, [value], (err, rows) => {
@@ -23,8 +30,15 @@ const getAllMyTweets = (userID) => {
     });
 }
 
-const getNewsFeed = (userID) => {
-    let sql = 'SELECT * FROM tweet WHERE tUserID IN (SELECT fFollowingID from follower where fUserID=?) ORDER BY tCreatedAt DESC;';
+const getNewsFeed = (userID, isNext, time) => {
+    let sql = 'SELECT * FROM tweet WHERE tUserID IN (SELECT fFollowingID from follower where fUserID=?)';
+    if(isNext===0)
+        sql = sql + ' ORDER BY tCreatedAt DESC limit 100';
+    else if(isNext===-1)
+        sql = sql + ' And tCreatedAt<=' + time + ' ORDER BY tCreatedAt DESC limit 100';
+    else if(isNext===1)
+        sql = sql + ' And tCreatedAt>' + time + ' ORDER BY tCreatedAt DESC limit 100';
+
     let value = [[userID]];
     return new Promise((resolve, reject) => {
         con.query(sql, [value], (err, rows) => {
@@ -35,4 +49,4 @@ const getNewsFeed = (userID) => {
     });
 }
 
-module.exports = {insertTweet, getAllMyTweets, getNewsFeed};
+module.exports = {insertTweet, getMyTweets, getNewsFeed};
